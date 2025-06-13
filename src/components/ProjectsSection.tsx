@@ -4,35 +4,33 @@ import Image from 'next/image';
 const ProjectsSection = () => {
   const projectsData = [
     {
-      logo: '/projects/logo/nasa-logo.png', // Updated path
+      logo: '/projects/logo/nasa-logo.png',
       shortDescription: 'Travel essentials, reinvented.',
       url: 'https://www.infinitypillow.co',
-      hoverImage: '/projects/project-img.webp', // Updated path
-      hoverBgColor: 'group-hover:bg-sky-700', // Example hover color
+      hoverImage: '/projects/project-img.png',
+      hoverBgColor: 'hover:bg-sky-700',
     },
     {
-      logo: '/projects/logo/nasa-logo.png', // Updated path
+      logo: '/projects/logo/nasa-logo.png',
       shortDescription: 'Travel essentials, reinvented.',
       url: 'https://www.infinitypillow.co',
-      hoverImage: '/projects/project-img.webp', // Updated path
-      hoverBgColor: 'group-hover:bg-sky-700', // Example hover color
+      hoverImage: '/projects/project-img.png',
+      hoverBgColor: 'hover:bg-emerald-700',
     },
     {
-      logo: '/projects/logo/nasa-logo.png', // Updated path
+      logo: '/projects/logo/nasa-logo.png',
       shortDescription: 'Travel essentials, reinvented.',
       url: 'https://www.infinitypillow.co',
-      hoverImage: '/projects/project-img.webp', // Updated path
-      hoverBgColor: 'group-hover:bg-sky-700', // Example hover color
+      hoverImage: '/projects/project-img.png',
+      hoverBgColor: 'hover:bg-amber-700',
     },
     {
-      logo: '/projects/logo/nasa-logo.png', // Updated path
+      logo: '/projects/logo/nasa-logo.png',
       shortDescription: 'Travel essentials, reinvented.',
       url: 'https://www.infinitypillow.co',
-      hoverImage: '/projects/project-img.webp', // Updated path
-      hoverBgColor: 'group-hover:bg-sky-700', // Example hover color
+      hoverImage: '/projects/project-img.png',
+      hoverBgColor: 'hover:bg-rose-700',
     },
-    
-    
   ];
 
   return (
@@ -66,15 +64,15 @@ const ProjectsSection = () => {
         {projectsData.map((project, index) => (
           <div
             key={index}
-            className={`group p-8 bg-zinc-800 dark:bg-zinc-800 rounded-[24px] transition-all duration-300 ease-in-out overflow-hidden ${project.hoverBgColor}`}
+            className={`group p-8 bg-zinc-800 dark:bg-zinc-800 rounded-[24px] transition-all duration-300 ease-in-out overflow-hidden project-card ${project.hoverBgColor}`}
           >
             <div className="flex items-center gap-8">
               <div className="project-logo flex-shrink-0">
                 <Image
                   src={project.logo}
                   alt={`${project.shortDescription} logo`}
-                  width={64}
-                  height={64}
+                  width={24}
+                  height={24}
                   loading="lazy"
                   className="h-16 w-16 object-contain"
                 />
@@ -85,22 +83,14 @@ const ProjectsSection = () => {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-zinc-400 dark:text-zinc-300 hover:text-zinc-200 dark:hover:text-zinc-100"
+                  className="text-sm text-zinc-300 dark:text-zinc-200 hover:text-zinc-100 dark:hover:text-white"
                 >
                   {project.url.replace(/^https?:\/\//, '')}
                 </a>
               </div>
             </div>
 
-            <div className="w-full h-0 mt-0 opacity-0 group-hover:mt-8 group-hover:opacity-100 group-hover:h-auto transition-all duration-300 ease-in-out overflow-hidden">
-              <div
-                className="w-full rounded-[24px] bg-contain bg-center bg-no-repeat"
-                style={{
-                  backgroundImage: `url(${project.hoverImage})`,
-                  paddingBottom: '62.5%',
-                }}
-              ></div>
-            </div>
+            
           </div>
         ))}
       </div>
