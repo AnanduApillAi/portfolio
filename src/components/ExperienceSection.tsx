@@ -1,12 +1,37 @@
+"use client"
 import React from 'react';
+import { motion } from 'framer-motion';
 
 function ExperienceSection() {
   return (
-    <section className="my-14">
-      <h3 className="mb-6 text-sm font-medium">Work Experience</h3>
-      <div className="bg-zinc-100/50 dark:bg-zinc-800/30 rounded-2xl p-6">
+    <motion.section 
+      className="my-14"
+      initial={{ opacity: 0, filter: "blur(8px)", y: 30 }}
+      animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+      transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
+    >
+      <motion.h3 
+        initial={{ opacity: 0, filter: "blur(6px)", y: 20 }}
+        animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+        transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
+        className="mb-4 text-lg font-medium"
+      >
+        Work Experience
+      </motion.h3>
+      
+      <motion.div 
+        initial={{ opacity: 0, filter: "blur(10px)", y: 40 }}
+        animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+        transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
+        className="bg-zinc-100/50 dark:bg-zinc-800/30 rounded-2xl p-6"
+      >
         <div className="flex flex-col divide-y divide-zinc-200 dark:divide-zinc-700">
-          <div className="flex py-6 first:pt-0 last:pb-0">
+          <motion.div 
+            initial={{ opacity: 0, filter: "blur(6px)", y: 20 }}
+            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
+            className="flex py-6 first:pt-0 last:pb-0"
+          >
             <div className="text-zinc-500 dark:text-zinc-400 mr-8 w-24 text-xs font-medium shrink-0">
               2020 - Present
             </div>
@@ -17,9 +42,14 @@ function ExperienceSection() {
                 Making icons &amp; illustrations — sometimes writing about them too
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="flex py-6 first:pt-0 last:pb-0">
+          <motion.div 
+            initial={{ opacity: 0, filter: "blur(6px)", y: 20 }}
+            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
+            className="flex py-6 first:pt-0 last:pb-0"
+          >
             <div className="text-zinc-500 dark:text-zinc-400 mr-8 w-24 text-xs font-medium shrink-0">
               2018 - 2020
             </div>
@@ -30,9 +60,14 @@ function ExperienceSection() {
                 Working for clients around the world building modern web applications
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="flex py-6 first:pt-0 last:pb-0">
+          <motion.div 
+            initial={{ opacity: 0, filter: "blur(6px)", y: 20 }}
+            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
+            className="flex py-6 first:pt-0 last:pb-0"
+          >
             <div className="text-zinc-500 dark:text-zinc-400 mr-8 w-24 text-xs font-medium shrink-0">
               2016 - 2018
             </div>
@@ -43,10 +78,10 @@ function ExperienceSection() {
                 Creating digital experiences for startups and established brands
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }
 

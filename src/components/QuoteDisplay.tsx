@@ -106,7 +106,7 @@ const QuoteDisplay = () => {
     <div className="text-zinc-600 dark:text-zinc-400 mb-8">
       <div className="relative min-h-[3.5rem]">
         <AnimatePresence mode="wait">
-          <motion.p
+          <motion.div
             key={currentQuoteIndex}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -138,7 +138,7 @@ const QuoteDisplay = () => {
                 />
               </span>
             </span>
-          </motion.p>
+          </motion.div>
         </AnimatePresence>
       </div>
     </div>

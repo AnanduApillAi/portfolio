@@ -1,6 +1,8 @@
+"use client"
 import Link from 'next/link';
 import TimeDisplay from './TimeDisplay';
 import { ThemeToggle } from './ThemeToggle';
+import { motion } from 'framer-motion';
 
 const Header = () => {
   return (
@@ -13,7 +15,17 @@ const Header = () => {
         <TimeDisplay />
       </div>
 
-      <nav className="fixed bottom-0 left-0 right-0 flex items-center justify-center space-x-1 p-4 z-50">
+      <motion.nav className="fixed bottom-0 left-0 right-0 flex items-center justify-center space-x-1 p-4 z-50"
+        initial={{  y: 100 }}
+        animate={{ y: 0 }}
+        transition={{ 
+          duration: 0.2, 
+          delay: 0.8, 
+          type: "spring",
+          damping: 12,
+          stiffness: 100
+        }}
+      >
         <div className="flex items-center bg-zinc-200 dark:bg-zinc-800 rounded-full p-1">
           <Link href="/" className="px-4 py-1.5 rounded-full bg-white dark:bg-zinc-900 text-sm font-medium">
             Home
@@ -28,7 +40,7 @@ const Header = () => {
           <ThemeToggle />
         </div>
 
-      </nav>
+      </motion.nav>
     </header>
   );
 };

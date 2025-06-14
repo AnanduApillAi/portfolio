@@ -1,8 +1,10 @@
+"use client"
 import Link from 'next/link';
 import { GithubIcon } from '@/components/ui/github';
 import { XIcon } from '@/components/ui/x';
 import { LinkedinIcon } from '@/components/ui/linkedin';
 import { MailCheckIcon } from '@/components/ui/mail-check';
+import { motion } from 'framer-motion';
 
 const socialLinks = [
   {
@@ -29,7 +31,11 @@ const socialLinks = [
 
 const SocialLinks = () => {
   return (
-    <div className="mb-16">
+    <motion.div className="mb-16"
+      initial={{ opacity: 0, filter: "blur(8px)", y: 30 }}
+      animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+      transition={{ duration: 0.4, delay: 0.6, ease: "easeOut" }}
+    >
       <div className="grid grid-cols-4 gap-3 max-w-64">
         {socialLinks.map((social, index) => {
           const IconComponent = social.icon;
@@ -42,15 +48,15 @@ const SocialLinks = () => {
               className="relative w-10 h-10 rounded-lg bg-zinc-50/80 dark:bg-zinc-900/80 border border-zinc-200/50 dark:border-zinc-800/50 transition-all duration-300  text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <IconComponent 
-                size={20} 
-                className="absolute inset-0 w-full h-full flex items-center justify-center" 
+              <IconComponent
+                size={20}
+                className="absolute inset-0 w-full h-full flex items-center justify-center"
               />
             </Link>
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
