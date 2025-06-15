@@ -70,28 +70,32 @@
 
 /* Background brand color transitions */
 .project-card {
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease;
 }
 
 .project-card.sky-brand:hover,
 .project-card.sky-brand:active {
   background-color: rgb(3 105 161) !important; /* sky-700 */
+  transform: translateY(-5px);
 }
 
 .project-card.emerald-brand:hover,
 .project-card.emerald-brand:active {
   background-color: rgb(4 120 87) !important; /* emerald-700 */
+  transform: translateY(-5px);
 }
 
 .project-card.amber-brand:hover,
 .project-card.amber-brand:active {
   background-color: rgb(180 83 9) !important; /* amber-700 */
+  transform: translateY(-5px);
 }
 
 .project-card.rose-brand:hover,
 .project-card.rose-brand:active {
   background-color: rgb(190 18 60) !important; /* rose-700 */
-}
+  transform: translateY(-5px);
+  }
 
 /* Logo background color transitions */
 .project-card .project-logo > div {

@@ -17,12 +17,12 @@ const TechStackSection = () => {
     <section className="mb-16">
       <h3 className="mb-6 text-lg font-medium">Tech Stack</h3>
       
-      <div className="bg-zinc-50/50 dark:bg-zinc-900/20 rounded-2xl p-6">
+      <div className="">
         <div className="flex flex-wrap gap-4 justify-center max-w-2xl mx-auto">
           {techData.map((tech, index) => (
             <div 
               key={index}
-              className="group min-w-[7rem] flex items-center gap-3 bg-white/70 dark:bg-zinc-800/60 backdrop-blur-sm border border-zinc-200/50 dark:border-zinc-700/50 rounded-full pl-2 pr-4 py-2 transition-all duration-300 hover:bg-white dark:hover:bg-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 cursor-pointer"
+              className="group min-w-[7.2rem] flex items-center gap-3 bg-white/70 dark:bg-zinc-800/60 backdrop-blur-sm border border-zinc-200/50 dark:border-zinc-700/50 rounded-full pl-2 pr-4 py-2 transition-all duration-300 hover:bg-white dark:hover:bg-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 cursor-pointer"
               style={{ width: 'calc(25% - 12px)' }}
             >
               <div className="w-8 h-8 flex items-center justify-center rounded-full bg-zinc-100/80 dark:bg-zinc-800/80 transition-colors duration-300 group-hover:bg-zinc-200 dark:group-hover:bg-zinc-700">
@@ -31,7 +31,7 @@ const TechStackSection = () => {
                   alt={`${tech.name} icon`}
                   width={20}
                   height={20}
-                  className="w-5 h-5 object-contain"
+                  className="w-5 h-5 object-contain min-w-5"
                 />
               </div>
               <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-colors duration-300 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 whitespace-nowrap flex-1">
