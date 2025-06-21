@@ -1,10 +1,16 @@
 import Link from 'next/link';
+import DecryptedText from './ui/DecryptedText';
 
 const Footer = () => {
   return (
-    <footer className="mt-32 pb-16 text-sm text-zinc-500 dark:text-zinc-400">
+    <footer className=" pb-24 text-sm text-zinc-500 dark:text-zinc-400 max-w-[600px] px-4 sm:px-6 py-8 mx-auto">
       <div className="flex flex-col sm:flex-row justify-between items-center">
-        <div className="mb-4 sm:mb-0">© 2025 Alex. All rights reserved.</div>
+        <DecryptedText
+          text="© 2025 Anandu. All rights reserved."
+          duration={2000}
+          animateOn="view"
+          revealDirection="start"
+        />
         <div className="flex space-x-4">
           <Link
             href="javascript:void(0)"

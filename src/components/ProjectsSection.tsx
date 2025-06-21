@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import GlareHover from './ui/GlareHover';
 
 const TechStackSection = () => {
   const techData = [
@@ -16,16 +17,24 @@ const TechStackSection = () => {
   return (
     <section className="mb-16">
       <h3 className="mb-6 text-lg font-medium">Tech Stack</h3>
-      
+
       <div className="">
-        <div className="flex flex-wrap gap-4 justify-center max-w-2xl mx-auto">
+        <div className="flex flex-wrap gap-2 justify-center md:justify-between max-w-2xl mx-auto">
           {techData.map((tech, index) => (
-            <div 
+            <GlareHover
               key={index}
-              className="group min-w-[7.2rem] flex items-center gap-3 bg-white/70 dark:bg-zinc-800/60 backdrop-blur-sm border border-zinc-200/50 dark:border-zinc-700/50 rounded-full pl-2 pr-4 py-2 transition-all duration-300 hover:bg-white dark:hover:bg-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 cursor-pointer"
-              style={{ width: 'calc(25% - 12px)' }}
+              glareColor="#ffffff"
+              borderRadius="100px"
+              glareOpacity={0.3}
+              glareAngle={-30}
+              glareSize={300}
+              transitionDuration={800}
+              playOnce={false}
+              className="group min-w-[7.2rem] flex items-center gap-3 bg-white/70 dark:bg-zinc-800/60 backdrop-blur-sm border border-zinc-200/50 dark:border-zinc-700/50 rounded-full pl-2 pr-4 py-2 transition-all duration-300"
             >
-              <div className="w-8 h-8 flex items-center justify-center rounded-full bg-zinc-100/80 dark:bg-zinc-800/80 transition-colors duration-300 group-hover:bg-zinc-200 dark:group-hover:bg-zinc-700">
+              <div className="flex items-center gap-3">
+
+              <div className="w-8 h-8 flex items-center justify-center rounded-full bg-zinc-100/80 dark:bg-zinc-800/80 transition-colors duration-300">
                 <Image
                   src={`/tech-icons/${tech.icon}.svg`}
                   alt={`${tech.name} icon`}
@@ -34,13 +43,14 @@ const TechStackSection = () => {
                   className="w-5 h-5 object-contain min-w-5"
                 />
               </div>
-              <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-colors duration-300 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 whitespace-nowrap flex-1">
-                {tech.name}
-              </span>
-            </div>
+                <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-colors duration-300 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 whitespace-nowrap flex-1">
+                  {tech.name}
+                </span>
+              </div>
+            </GlareHover>
           ))}
         </div>
-        
+
         <div className="mt-4 text-center">
           <p className="text-xs text-zinc-500 dark:text-zinc-400">
             Technologies I work with daily
@@ -147,10 +157,10 @@ const ProjectsSection = () => {
                     className="project-link inline-flex items-center gap-2 text-sm text-zinc-300 dark:text-zinc-200 hover:text-zinc-100 dark:hover:text-white transition-colors duration-200"
                   >
                     <span>{project.url.replace(/^https?:\/\//, '')}</span>
-                    <svg 
-                      className="link-arrow w-4 h-4" 
-                      fill="none" 
-                      stroke="currentColor" 
+                    <svg
+                      className="link-arrow w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
                       viewBox="0 0 24 18"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -166,6 +176,7 @@ const ProjectsSection = () => {
                     <div className="bg-white/10 border border-white/20 rounded-2xl flex flex-col items-center justify-center gap-2 w-[3rem] py-2">
                       <div className="flex flex-col items-center gap-2">
                         {project.techStack.map((tech, techIndex) => (
+
                           <div
                             key={techIndex}
                             className="group/icon relative"
@@ -182,6 +193,8 @@ const ProjectsSection = () => {
                               />
                             </div>
                           </div>
+
+
                         ))}
                       </div>
                     </div>
@@ -192,7 +205,7 @@ const ProjectsSection = () => {
           ))}
         </div>
       </section>
-      
+
       <TechStackSection />
     </>
   );

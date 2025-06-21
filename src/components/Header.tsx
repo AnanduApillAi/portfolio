@@ -3,10 +3,25 @@ import Link from 'next/link';
 import TimeDisplay from './TimeDisplay';
 import { ThemeToggle } from './ThemeToggle';
 import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
+  const pathname = usePathname();
+
+  // Determine which nav item is active and its position
+  const getActiveIndex = () => {
+    if (pathname === '/') return 0;
+    if (pathname === '/about') return 1;
+    if (pathname === '/projects' || pathname.startsWith('/projects/')) return 2;
+    if (pathname === '/blog' || pathname.startsWith('/blog/')) return 3;
+    return 0;
+  };
+
+  const activeIndex = getActiveIndex();
+
   return (
-    <header className="flex justify-between items-center mb-16">
+    <header className="flex justify-between items-center max-w-[600px] px-4 sm:px-6 py-8 mx-auto">
+      {pathname !== '/about' && (
       <div className='flex justify-between items-center w-full'>
         <Link href="/" className="text-xl font-bold">
           <span className="font-serif italic text-2xl">A.A</span>
@@ -14,6 +29,7 @@ const Header = () => {
 
         <TimeDisplay />
       </div>
+      )}
 
       <motion.nav className="fixed bottom-0 left-0 right-0 flex items-center justify-center space-x-1 p-4 z-50"
         initial={{  y: 100 }}
@@ -26,15 +42,49 @@ const Header = () => {
           stiffness: 100
         }}
       >
-        <div className="flex items-center bg-zinc-200 dark:bg-zinc-800 rounded-full p-1">
-          <Link href="/" className="px-4 py-1.5 rounded-full bg-white dark:bg-zinc-900 text-sm font-medium">
+        <div className="relative flex items-center bg-zinc-200 dark:bg-zinc-800 rounded-full px-2 py-2">
+          {/* Sliding background indicator */}
+          <motion.div
+            className="absolute bg-white dark:bg-zinc-900 rounded-full h-8"
+            animate={{
+
+              x: activeIndex === 0 ? 0 : activeIndex === 1 ? 79 : activeIndex === 2 ? 163 : 263, // More precise positioning
+              width: activeIndex === 2 ? 90 : activeIndex === 3 ? 65 : 80, // Adjusted width for Blog
+            }}
+            transition={{
+              type: "spring",
+              damping: 20,
+              stiffness: 300
+            }}
+            style={{
+              left: 8, // Increased left offset for better centering
+              top: 10, // Center vertically
+            }}
+          />
+          
+          <Link 
+            href="/" 
+            className="relative z-10 px-5 py-2 rounded-full text-sm font-medium transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
+          >
             Home
           </Link>
-          <Link href="/about" className="px-4 py-1.5 rounded-full text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800/80">
+          <Link 
+            href="/about" 
+            className="relative z-10 px-5 py-2 rounded-full text-sm font-medium transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
+          >
             About
           </Link>
-          <Link href="/uses" className="px-4 py-1.5 rounded-full text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800/80">
-            Uses
+          <Link 
+            href="/projects" 
+            className="relative z-10 px-6 py-2 rounded-full text-sm font-medium transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
+          >
+            Projects
+          </Link>
+          <Link 
+            href="/blog" 
+            className="relative z-10 px-6 py-2 rounded-full text-sm font-medium transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
+          >
+            Blog
           </Link>
 
           <ThemeToggle />

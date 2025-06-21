@@ -75,7 +75,7 @@ const TimeDisplay = () => {
       `}</style>
       
       <div
-        className={`cursor-pointer transition-opacity duration-300 hover:opacity-100 relative overflow-hidden ${currentTheme.containerClass}`}
+        className={`cursor-pointer transition-opacity duration-300 hover:opacity-100 relative overflow-hidden select-none ${currentTheme.containerClass}`}
         onClick={handleThemeChange}
       >
         <div className={currentTheme.timeClass}>
@@ -101,4 +101,4 @@ const TimeDisplay = () => {
   );
 };
 
-export default TimeDisplay; 
+export default TimeDisplay;

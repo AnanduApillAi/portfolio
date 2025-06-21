@@ -1,20 +1,13 @@
-import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import SocialLinks from '@/components/SocialLinks';
 import ProjectsSection from '@/components/ProjectsSection';
-import CaseStudiesSection from '@/components/CaseStudiesSection';
-import TestimonialsSection from '@/components/TestimonialsSection';
-import ImpactSection from '@/components/ImpactSection';
 import BlogSection from '@/components/BlogSection';
-import Footer from '@/components/Footer';
 import ExperienceSection from '@/components/ExperienceSection';
-import ClayPreview from '@/components/ClayPreview';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
       <div className="max-w-[600px] mx-auto px-4 sm:px-6 py-8">
-        <Header />
         <main data-scroll-target>
           <HeroSection />
           <SocialLinks />
@@ -23,14 +16,8 @@ export default function Home() {
           
           
           <ProjectsSection />
-          <CaseStudiesSection />
-          <TestimonialsSection />
-          <div className="mb-16">
-            <ClayPreview />
-          </div>
           <BlogSection />
         </main>
-        <Footer />
       </div>
     </div>
   );
