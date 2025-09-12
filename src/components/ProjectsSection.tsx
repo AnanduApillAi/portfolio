@@ -19,7 +19,7 @@ const TechStackSection = () => {
       <h3 className="mb-6 text-lg font-medium">Tech Stack</h3>
 
       <div className="">
-        <div className="flex flex-wrap gap-2 justify-center md:justify-between max-w-2xl mx-auto">
+        <div className="grid grid-cols-3 md:grid-cols-4 gap-2 justify-start max-w-2xl mx-auto">
           {techData.map((tech, index) => (
             <GlareHover
               key={index}
@@ -30,17 +30,17 @@ const TechStackSection = () => {
               glareSize={300}
               transitionDuration={800}
               playOnce={false}
-              className="group min-w-[7.2rem] flex items-center gap-3 bg-white/70 dark:bg-zinc-800/60 backdrop-blur-sm border border-zinc-200/50 dark:border-zinc-700/50 rounded-full pl-2 pr-4 py-2 transition-all duration-300"
+              className="group min-w-[5.5rem] sm:min-w-[7.2rem] flex items-center gap-3 bg-white/70 dark:bg-zinc-800/60 backdrop-blur-sm border border-zinc-200/50 dark:border-zinc-700/50 rounded-full  py-2 px-2 sm:px-3 transition-all duration-300"
             >
               <div className="flex items-center gap-3">
 
-              <div className="w-8 h-8 flex items-center justify-center rounded-full bg-zinc-100/80 dark:bg-zinc-800/80 transition-colors duration-300">
+              <div className="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-zinc-100/80 dark:bg-zinc-800/80 transition-colors duration-300">
                 <Image
                   src={`/tech-icons/${tech.icon}.svg`}
                   alt={`${tech.name} icon`}
                   width={20}
                   height={20}
-                  className="w-5 h-5 object-contain min-w-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5 object-contain min-w-4 sm:min-w-5"
                 />
               </div>
                 <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-colors duration-300 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 whitespace-nowrap flex-1">
@@ -52,8 +52,8 @@ const TechStackSection = () => {
         </div>
 
         <div className="mt-4 text-center">
-          <p className="text-xs text-zinc-500 dark:text-zinc-400">
-            Technologies I work with daily
+          <p className="text-[0.7rem] text-zinc-500 dark:text-zinc-400">
+            Technologies I work with daily.
           </p>
         </div>
       </div>
@@ -64,64 +64,62 @@ const TechStackSection = () => {
 const ProjectsSection = () => {
   const projectsData = [
     {
-      logo: '/projects/logo/nasa-logo.png',
-      shortDescription: 'Travel essentials, reinvented.',
-      url: 'https://www.infinitypillow.co',
-      hoverImage: '/projects/project-img.png',
-      brandColorClass: 'sky-brand',
-      brandColor: 'bg-sky-600',
+      code: 'rwc',
+      logo: '/projects/logo/Rewocon.webp',
+      shortDescription: 'Builders connected.',
+      url: 'https://www.rewoconnect.com',
+      hoverImage: '/projects/rewoconnect-cover.png',
+      brandColorClass: 'teal-brand',
+      brandColor: 'bg-teal-900',
       techStack: ['next', 'typescript', 'tailwind'],
+      dimensions: [42,42],
     },
     {
-      logo: '/projects/logo/nasa-logo.png',
-      shortDescription: 'Travel essentials, reinvented.',
-      url: 'https://www.infinitypillow.co',
+      code: 'ats',
+      logo: '/projects/logo/artist-logo.png',
+      shortDescription: 'Dynamic artist portfolio.',
+      url: 'https://sibusartisanspace.com.au',
       hoverImage: '/projects/project-img.png',
-      brandColorClass: 'emerald-brand',
-      brandColor: 'bg-emerald-600',
+      brandColorClass: 'fuchsia-brand',
+      brandColor: 'bg-fuchsia-700',
       techStack: ['next', 'supabase', 'typescript'],
+      dimensions: [42,42],
     },
     {
-      logo: '/projects/logo/nasa-logo.png',
-      shortDescription: 'Travel essentials, reinvented.',
-      url: 'https://www.infinitypillow.co',
+      code: 'vb',
+      logo: '/projects/logo/veeble-logo.png',
+      shortDescription: 'Veeble website.',
+      url: 'https://www.veeble.com',
       hoverImage: '/projects/project-img.png',
-      brandColorClass: 'amber-brand',
-      brandColor: 'bg-amber-600',
-      techStack: ['framer', 'typescript', 'tailwind'],
+      brandColorClass: 'blue-brand',
+      brandColor: 'bg-blue-400',
+      techStack: ['php', 'typescript', 'tailwind'],
+      dimensions: [64,64],
     },
-    {
-      logo: '/projects/logo/nasa-logo.png',
-      shortDescription: 'Travel essentials, reinvented.',
-      url: 'https://www.infinitypillow.co',
-      hoverImage: '/projects/project-img.png',
-      brandColorClass: 'rose-brand',
-      brandColor: 'bg-rose-600',
-      techStack: ['php', 'tailwind'],
-    },
+    
   ];
 
   return (
     <>
-      <section className="mb-16">
+      <section className="mb-16 ">
         <div className="flex justify-between items-center">
           <h3 className="mb-4 text-lg font-medium">Projects</h3>
           <Link
             href="/projects"
-            className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-8 rounded-md px-3 text-xs flex items-center"
+            className="group justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50  h-8 rounded-md px-3 text-xs flex items-center"
           >
             View all
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
-              viewBox="0 0 24 18"
+              viewBox="0 0 24 22"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="lucide lucide-arrow-right ml-1 h-4 w-4"
+              className="lucide lucide-arrow-right ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200"
               aria-hidden="true"
             >
               <path d="M5 12h14"></path>
@@ -133,18 +131,18 @@ const ProjectsSection = () => {
           {projectsData.map((project, index) => (
             <div
               key={index}
-              className={`group relative p-8 bg-zinc-800 dark:bg-zinc-800 rounded-[24px] transition-all duration-300 ease-in-out overflow-hidden project-card ${project.brandColorClass}`}
+              className={`group relative p-8 bg-zinc-800 dark:bg-zinc-800/30 border border-zinc-800/30 rounded-[24px] transition-all duration-300 ease-in-out overflow-hidden project-card project-${project.code} ${project.brandColorClass}`}
             >
               <div className="flex items-center gap-8">
                 <div className="project-logo flex-shrink-0">
-                  <div className={`${project.brandColor} transition-colors duration-300 rounded-2xl p-4`}>
+                  <div className={`${project.brandColor} transition-colors duration-300 rounded-2xl w-16 h-16 flex justify-center items-center`}>
                     <Image
                       src={project.logo}
                       alt={`${project.shortDescription} logo`}
-                      width={24}
-                      height={24}
+                      width={project.dimensions[0]}
+                      height={project.dimensions[1]}
                       loading="lazy"
-                      className="h-8 w-8 object-contain"
+                      className="object-contain"
                     />
                   </div>
                 </div>

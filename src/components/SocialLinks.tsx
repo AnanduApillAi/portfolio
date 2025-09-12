@@ -7,22 +7,22 @@ import { MailCheckIcon } from '@/components/ui/mail-check';
 
 const socialLinks = [
   {
-    href: "https://github.com/yourusername",
+    href: "https://github.com/AnanduApillAi",
     icon: GithubIcon,
     label: "GitHub"
   },
   {
-    href: "https://x.com/yourusername",
+    href: "https://x.com/ananduapillai",
     icon: XIcon,
     label: "X (Twitter)"
   },
   {
-    href: "https://linkedin.com/in/yourusername",
+    href: "https://www.linkedin.com/in/ananduapillai/",
     icon: LinkedinIcon,
     label: "LinkedIn"
   },
   {
-    href: "mailto:your.email@example.com",
+    href: "mailto:anandu.a.dev@gmail.com",
     icon: MailCheckIcon,
     label: "Email"
   }

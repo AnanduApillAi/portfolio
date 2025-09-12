@@ -1,7 +1,10 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 
 function AboutPage() {
+    const activities = ['watch movies', 'read books',  'play games'];
+    const [currentActivity, setCurrentActivity] = useState(activities[0]);
+    const [direction, setDirection] = useState('');
     return (
         <div>
             <style jsx>{`
@@ -213,108 +216,7 @@ function AboutPage() {
                     </div>
                 </section>
 
-                {/* Personal Interests */}
-                <section className="my-14 text-sm">
-                    <h3 className="mb-6">Currently</h3>
-                    <div className="space-y-4">
-                        <div className="flex items-start gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-800">
-                            <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center flex-shrink-0">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-amber-600 dark:text-amber-400">
-                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-                                </svg>
-                            </div>
-                            <div className="flex-1">
-                                <div className="font-medium text-zinc-900 dark:text-zinc-100 mb-1">The Design of Everyday Things</div>
-                                <div className="text-xs text-zinc-500 dark:text-zinc-400">by Don Norman • A timeless exploration of user-centered design</div>
-                            </div>
-                        </div>
-
-                        <div className="flex items-start gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-800">
-                            <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-green-600 dark:text-green-400">
-                                    <circle cx="12" cy="12" r="2"/>
-                                    <path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/>
-                                </svg>
-                            </div>
-                            <div className="flex-1">
-                                <div className="font-medium text-zinc-900 dark:text-zinc-100 mb-1">Ambient Soundscapes</div>
-                                <div className="text-xs text-zinc-500 dark:text-zinc-400">Bon Iver, Nils Frahm, Ólafur Arnalds • Perfect for deep work sessions</div>
-                            </div>
-                        </div>
-
-                        <div className="flex items-start gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-800">
-                            <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-blue-600 dark:text-blue-400">
-                                    <polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/>
-                                </svg>
-                            </div>
-                            <div className="flex-1">
-                                <div className="font-medium text-zinc-900 dark:text-zinc-100 mb-1">Three.js & WebGL</div>
-                                <div className="text-xs text-zinc-500 dark:text-zinc-400">Exploring immersive 3D web experiences and interactive design</div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Hobbies & Interests */}
-                <section className="my-14 text-sm">
-                    <h3 className="mb-6">Beyond Work</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors">
-                            <div className="w-6 h-6 rounded bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center flex-shrink-0">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-rose-600 dark:text-rose-400">
-                                    <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
-                                    <circle cx="12" cy="13" r="3"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <div className="font-medium text-zinc-900 dark:text-zinc-100">Film Photography</div>
-                                <div className="text-xs text-zinc-500 dark:text-zinc-400">Leica M6 • 35mm</div>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors">
-                            <div className="w-6 h-6 rounded bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center flex-shrink-0">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-amber-600 dark:text-amber-400">
-                                    <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
-                                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8Z"/>
-                                    <line x1="6" y1="1" x2="6" y2="4"/>
-                                    <line x1="10" y1="1" x2="10" y2="4"/>
-                                    <line x1="14" y1="1" x2="14" y2="4"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <div className="font-medium text-zinc-900 dark:text-zinc-100">Coffee Brewing</div>
-                                <div className="text-xs text-zinc-500 dark:text-zinc-400">V60 Pour-over</div>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors">
-                            <div className="w-6 h-6 rounded bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-emerald-600 dark:text-emerald-400">
-                                    <path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14l4-2 4 2Z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <div className="font-medium text-zinc-900 dark:text-zinc-100">Trail Running</div>
-                                <div className="text-xs text-zinc-500 dark:text-zinc-400">Mountain paths</div>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors">
-                            <div className="w-6 h-6 rounded bg-violet-100 dark:bg-violet-900/30 flex items-center justify-center flex-shrink-0">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-violet-600 dark:text-violet-400">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <div className="font-medium text-zinc-900 dark:text-zinc-100">Sketching</div>
-                                <div className="text-xs text-zinc-500 dark:text-zinc-400">Pen & Paper</div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                
 
                 {/* Tools & Stack */}
                 <section className="my-14 text-sm">
@@ -339,52 +241,153 @@ function AboutPage() {
                     </div>
                 </section>
 
-                {/* Books */}
+                {/* Writings */}
                 <section className="my-14 text-sm">
-                    <h3 className="mb-6">Recent Reads</h3>
-                    <div className="space-y-3">
-                        <div className="flex items-start gap-3">
-                            <div className="w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-500 mt-2 flex-shrink-0"></div>
-                            <div>
-                                <div className="font-medium text-zinc-900 dark:text-zinc-100">Atomic Habits</div>
-                                <div className="text-xs text-zinc-500 dark:text-zinc-400">James Clear</div>
+                    <h3 className="mb-6">Writings</h3>
+                    <div className="flex flex-col gap-6">
+                        <div className="flex">
+                            <div className="mr-8 w-full max-w-[100px] text-slate-400 dark:text-slate-400">
+                                Hashnode
+                            </div>
+                            <div className="flex flex-1 flex-col text-slate-900 dark:text-slate-100">
+                                <a
+                                    href="https://hashnode.com/@yourusername"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex hover:underline"
+                                >
+                                    @yourusername
+                                    <svg
+                                        width="12"
+                                        height="12"
+                                        viewBox="0 0 12 12"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M3.5 3C3.22386 3 3 3.22386 3 3.5C3 3.77614 3.22386 4 3.5 4V3ZM8.5 3.5H9C9 3.22386 8.77614 3 8.5 3V3.5ZM8 8.5C8 8.77614 8.22386 9 8.5 9C8.77614 9 9 8.77614 9 8.5H8ZM2.64645 8.64645C2.45118 8.84171 2.45118 9.15829 2.64645 9.35355C2.84171 9.54882 3.15829 9.54882 3.35355 9.35355L2.64645 8.64645ZM3.5 4H8.5V3H3.5V4ZM8 3.5V8.5H9V3.5H8ZM8.14645 3.14645L2.64645 8.64645L3.35355 9.35355L8.85355 3.85355L8.14645 3.14645Z"
+                                            className="fill-current text-slate-900 dark:text-slate-100"
+                                        ></path>
+                                    </svg>
+                                </a>
                             </div>
                         </div>
-                        <div className="flex items-start gap-3">
-                            <div className="w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-500 mt-2 flex-shrink-0"></div>
-                            <div>
-                                <div className="font-medium text-zinc-900 dark:text-zinc-100">The Midnight Library</div>
-                                <div className="text-xs text-zinc-500 dark:text-zinc-400">Matt Haig</div>
+                        <div className="flex">
+                            <div className="mr-8 w-full max-w-[100px] text-slate-400 dark:text-slate-400">
+                                Dev.to
+                            </div>
+                            <div className="flex flex-1 flex-col text-slate-900 dark:text-slate-100">
+                                <a
+                                    href="https://dev.to/yourusername"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex hover:underline"
+                                >
+                                    @yourusername
+                                    <svg
+                                        width="12"
+                                        height="12"
+                                        viewBox="0 0 12 12"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M3.5 3C3.22386 3 3 3.22386 3 3.5C3 3.77614 3.22386 4 3.5 4V3ZM8.5 3.5H9C9 3.22386 8.77614 3 8.5 3V3.5ZM8 8.5C8 8.77614 8.22386 9 8.5 9C8.77614 9 9 8.77614 9 8.5H8ZM2.64645 8.64645C2.45118 8.84171 2.45118 9.15829 2.64645 9.35355C2.84171 9.54882 3.15829 9.54882 3.35355 9.35355L2.64645 8.64645ZM3.5 4H8.5V3H3.5V4ZM8 3.5V8.5H9V3.5H8ZM8.14645 3.14645L2.64645 8.64645L3.35355 9.35355L8.85355 3.85355L8.14645 3.14645Z"
+                                            className="fill-current text-slate-900 dark:text-slate-100"
+                                        ></path>
+                                    </svg>
+                                </a>
                             </div>
                         </div>
-                        <div className="flex items-start gap-3">
-                            <div className="w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-500 mt-2 flex-shrink-0"></div>
-                            <div>
-                                <div className="font-medium text-zinc-900 dark:text-zinc-100">Klara and the Sun</div>
-                                <div className="text-xs text-zinc-500 dark:text-zinc-400">Kazuo Ishiguro</div>
+                        <div className="flex">
+                            <div className="mr-8 w-full max-w-[100px] text-slate-400 dark:text-slate-400">
+                                Blog
+                            </div>
+                            <div className="flex flex-1 flex-col text-slate-900 dark:text-slate-100">
+                                <a
+                                    href="https://yourpersonalblog.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex hover:underline"
+                                >
+                                    yourpersonalblog.com
+                                    <svg
+                                        width="12"
+                                        height="12"
+                                        viewBox="0 0 12 12"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M3.5 3C3.22386 3 3 3.22386 3 3.5C3 3.77614 3.22386 4 3.5 4V3ZM8.5 3.5H9C9 3.22386 8.77614 3 8.5 3V3.5ZM8 8.5C8 8.77614 8.22386 9 8.5 9C8.77614 9 9 8.77614 9 8.5H8ZM2.64645 8.64645C2.45118 8.84171 2.45118 9.15829 2.64645 9.35355C2.84171 9.54882 3.15829 9.54882 3.35355 9.35355L2.64645 8.64645ZM3.5 4H8.5V3H3.5V4ZM8 3.5V8.5H9V3.5H8ZM8.14645 3.14645L2.64645 8.64645L3.35355 9.35355L8.85355 3.85355L8.14645 3.14645Z"
+                                            className="fill-current text-slate-900 dark:text-slate-100"
+                                        ></path>
+                                    </svg>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* Fun Fact */}
-                <section className="my-14 text-sm border-t border-zinc-200 dark:border-zinc-800 pt-8">
-                    <div className="flex items-center justify-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-amber-600 dark:text-amber-400">
-                                <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
-                                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8Z"/>
-                                <line x1="6" y1="1" x2="6" y2="4"/>
-                                <line x1="10" y1="1" x2="10" y2="4"/>
-                                <line x1="14" y1="1" x2="14" y2="4"/>
-                            </svg>
+                {/* Interactive Statement */}
+                <section className="my-14 text-sm">
+                    <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
+                        <span>I like to</span>
+                        <div className="relative inline-flex items-center gap-1">
+                            <div className="relative h-5 overflow-hidden min-w-[85px]">
+                                <div 
+                                    key={currentActivity}
+                                    className="absolute inset-0 flex items-center transition-all duration-300 ease-out"
+                                    style={{
+                                        transform: direction === 'up' ? 'translateY(-20px)' : direction === 'down' ? 'translateY(20px)' : 'translateY(0px)',
+                                        opacity: direction ? 0 : 1
+                                    }}
+                                >
+                                    <span className="text-zinc-900 dark:text-zinc-100 font-medium whitespace-nowrap">
+                                        {currentActivity}
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-0.5 ml-1">
+                                <button 
+                                    onClick={() => {
+                                        setDirection('up');
+                                        setTimeout(() => {
+                                            const currentIndex = activities.indexOf(currentActivity);
+                                            const nextIndex = currentIndex === 0 ? activities.length - 1 : currentIndex - 1;
+                                            setCurrentActivity(activities[nextIndex]);
+                                            setDirection('');
+                                        }, 150);
+                                    }}
+                                    className="w-3 h-3 flex items-center justify-center text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors"
+                                >
+                                    <svg width="8" height="5" viewBox="0 0 8 5" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                        <path d="M1 4l3-3 3 3" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </button>
+                                <button 
+                                    onClick={() => {
+                                        setDirection('down');
+                                        setTimeout(() => {
+                                            const currentIndex = activities.indexOf(currentActivity);
+                                            const nextIndex = currentIndex === activities.length - 1 ? 0 : currentIndex + 1;
+                                            setCurrentActivity(activities[nextIndex]);
+                                            setDirection('');
+                                        }, 150);
+                                    }}
+                                    className="w-3 h-3 flex items-center justify-center text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors"
+                                >
+                                    <svg width="8" height="5" viewBox="0 0 8 5" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                        <path d="M1 1l3 3 3-3" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
-                        <div className="text-center">
-                            <div className="text-zinc-900 dark:text-zinc-100 font-medium">Coffee beans from 23 countries</div>
-                            <div className="text-xs text-zinc-500 dark:text-zinc-400">Each trip, a new flavor to discover</div>
-                        </div>
+                        <span>sometimes.</span>
                     </div>
                 </section>
+
+                
             </main>
         </div>
     )

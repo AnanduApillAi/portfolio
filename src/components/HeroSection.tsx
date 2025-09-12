@@ -13,21 +13,8 @@ const HeroSection = () => {
         Hi, I'm Anandu
       </h1>
 
-      <h2 className="text-xl sm:text-2xl font-bold mb-6 text-zinc-800 dark:text-zinc-200" >
-        <div className='relative' ref={containerRef}>
-
-          <VariableProximity
-            label={'Front End'}
-            className={'variable-proximity-demo'}
-            fromFontVariationSettings="'wght' 400, 'opsz' 10"
-            toFontVariationSettings="'wght' 1000, 'opsz' 40"
-            containerRef={containerRef}
-            radius={100}
-            falloff='linear'
-          />
-          <span className="ml-1">- focussed Full Stack dev from India</span>
-        </div>
-        
+      <h2 className="text-xl sm:text-2xl font-semibold mb-6 text-zinc-800 dark:text-zinc-200" >
+        <span className="">Front-End focused Full Stack dev from India</span>
       </h2>
 
       <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-6 max-w-2xl">

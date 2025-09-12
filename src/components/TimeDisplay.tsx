@@ -19,13 +19,16 @@ const themes = [
 ];
 
 const TimeDisplay = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const [currentTime, setCurrentTime] = useState<Date | null>(null);
   const [currentThemeIndex, setCurrentThemeIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const currentTheme = themes[currentThemeIndex];
 
   useEffect(() => {
+    // Set initial time on client side only
+    setCurrentTime(new Date());
+    
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
@@ -78,8 +81,8 @@ const TimeDisplay = () => {
         className={`cursor-pointer transition-opacity duration-300 hover:opacity-100 relative overflow-hidden select-none ${currentTheme.containerClass}`}
         onClick={handleThemeChange}
       >
-        <div className={currentTheme.timeClass}>
-          {formatTime(currentTime)}
+        <div className={currentTheme.timeClass} suppressHydrationWarning>
+          {currentTime ? formatTime(currentTime) : '--:--:-- --'}
         </div>
         
         {/* Shutter Animation */}

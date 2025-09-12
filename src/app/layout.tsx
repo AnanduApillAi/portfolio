@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Roboto_Flex } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
+
 import ScrollRestoration from "@/components/ScrollRestoration";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -32,16 +32,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${robotoFlex.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${robotoFlex.variable} antialiased bg-zinc-950 text-zinc-100`}
       >
-        <ThemeProvider>
-          <Header />
-          {children}
-          <Footer />
-          <ScrollRestoration />
-        </ThemeProvider>
+        <Header />
+        {children}
+        <Footer />
+        <ScrollRestoration />
       </body>
     </html>
   );

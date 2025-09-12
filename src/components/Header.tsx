@@ -1,7 +1,7 @@
 "use client"
 import Link from 'next/link';
 import TimeDisplay from './TimeDisplay';
-import { ThemeToggle } from './ThemeToggle';
+
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
@@ -13,7 +13,6 @@ const Header = () => {
     if (pathname === '/') return 0;
     if (pathname === '/about') return 1;
     if (pathname === '/projects' || pathname.startsWith('/projects/')) return 2;
-    if (pathname === '/blog' || pathname.startsWith('/blog/')) return 3;
     return 0;
   };
 
@@ -48,8 +47,8 @@ const Header = () => {
             className="absolute bg-white dark:bg-zinc-900 rounded-full h-8"
             animate={{
 
-              x: activeIndex === 0 ? 0 : activeIndex === 1 ? 79 : activeIndex === 2 ? 163 : 263, // More precise positioning
-              width: activeIndex === 2 ? 90 : activeIndex === 3 ? 65 : 80, // Adjusted width for Blog
+              x: activeIndex === 0 ? 0 : activeIndex === 1 ? 79 : 163, // More precise positioning
+              width: activeIndex === 2 ? 90 : 80, // Adjusted width for Projects
             }}
             transition={{
               type: "spring",
@@ -80,14 +79,6 @@ const Header = () => {
           >
             Projects
           </Link>
-          <Link 
-            href="/blog" 
-            className="relative z-10 px-6 py-2 rounded-full text-sm font-medium transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
-          >
-            Blog
-          </Link>
-
-          <ThemeToggle />
         </div>
 
       </motion.nav>

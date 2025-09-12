@@ -1,12 +1,11 @@
 import HeroSection from '@/components/HeroSection';
 import SocialLinks from '@/components/SocialLinks';
 import ProjectsSection from '@/components/ProjectsSection';
-import BlogSection from '@/components/BlogSection';
 import ExperienceSection from '@/components/ExperienceSection';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100">
       <div className="max-w-[600px] mx-auto px-4 sm:px-6 py-8">
         <main data-scroll-target>
           <HeroSection />
@@ -16,7 +15,6 @@ export default function Home() {
           
           
           <ProjectsSection />
-          <BlogSection />
         </main>
       </div>
     </div>

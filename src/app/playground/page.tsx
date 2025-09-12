@@ -16,7 +16,7 @@ const PlaygroundPage = () => {
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
-      <div className="max-w-[700px] mx-auto px-4 sm:px-6 py-8">
+      <div className="max-w-[600px] mx-auto px-4 sm:px-6 py-8">
         
         <main className="mt-8">
           {/* Navigation */}
