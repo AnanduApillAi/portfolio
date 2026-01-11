@@ -42,7 +42,6 @@ export default function DecryptedText({
     useEffect(() => {
         let interval: NodeJS.Timeout
         let currentIteration = 0
-        let startTime: number
 
         // Calculate timing based on duration if provided
         const calculateTiming = () => {
@@ -135,8 +134,7 @@ export default function DecryptedText({
 
         if (isHovering) {
             setIsScrambling(true)
-            startTime = Date.now()
-            
+
             // Set a timeout to force completion if duration is specified
             let forceCompleteTimeout: NodeJS.Timeout
             if (duration) {
@@ -149,7 +147,7 @@ export default function DecryptedText({
                     }
                 }, duration)
             }
-            
+
             interval = setInterval(() => {
                 setRevealedIndices((prevRevealed) => {
                     if (sequential) {

@@ -122,7 +122,7 @@ const ImpactSection = () => {
       <div className="mb-8">
         <h2 className="text-3xl font-bold mb-4">What You Get When We Work Together</h2>
         <p className="text-xl text-zinc-700 dark:text-zinc-300 max-w-3xl">
-          Design isn't just about aesthetics—it's about delivering real, measurable results. Here's how my design work drives impact for your business:
+          Design isn&apos;t just about aesthetics—it&apos;s about delivering real, measurable results. Here&apos;s how my design work drives impact for your business:
         </p>
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">

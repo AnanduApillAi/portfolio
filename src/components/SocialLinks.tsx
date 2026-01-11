@@ -32,7 +32,7 @@ const SocialLinks = () => {
   return (
     <div className="mb-16">
       <div className="grid grid-cols-4 gap-3 max-w-64">
-        {socialLinks.map((social, index) => {
+        {socialLinks.map((social) => {
           const IconComponent = social.icon;
           return (
             <Link

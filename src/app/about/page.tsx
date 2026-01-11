@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react'
+import Image from 'next/image'
 
 function AboutPage() {
     const activities = ['watch movies', 'read books', 'play games'];
@@ -18,10 +19,11 @@ function AboutPage() {
             <main className="relative max-w-[600px] px-4 sm:px-6 py-8 min-h-screen mx-auto font-light">
                 <section className="flex items-center">
                     <div className="rounded-full overflow-hidden w-20 h-20 shrink-0 relative bg-white">
-                        <img
+                        <Image
                             alt="Author"
                             src="/image/anandu.jpg"
-                            className="absolute inset-0 w-full h-full object-contain scale-[1.6] translate-x-2 translate-y-1"
+                            fill
+                            className="object-contain scale-[1.6] translate-x-2 translate-y-1"
                             style={{ color: 'transparent' }}
                         />
                     </div>

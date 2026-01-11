@@ -5,16 +5,6 @@ import { GlobeIcon } from 'lucide-react';
 
 const ProjectsPage = () => {
 
-  const categories = [
-    'All',
-    'Marketplace',
-    'Portfolio',
-    'Web Development',
-    'Developer Tools',
-    'Entertainment',
-    'Marketing'
-  ];
-
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
       <div className="max-w-[600px] mx-auto px-4 sm:px-6 py-8">
@@ -46,7 +36,7 @@ const ProjectsPage = () => {
 
             <h1 className="text-4xl font-bold mb-4">Projects</h1>
             <p className="text-xl text-zinc-700 dark:text-zinc-300 max-w-2xl">
-              A collection of projects I've worked on, showcasing different technologies and design approaches.
+              A collection of projects I&apos;ve worked on, showcasing different technologies and design approaches.
             </p>
           </div>
 

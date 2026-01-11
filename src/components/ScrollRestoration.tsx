@@ -3,6 +3,12 @@
 import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 
+declare global {
+  interface Window {
+    manualScrollRestore?: () => void;
+  }
+}
+
 export default function ScrollRestoration() {
   const pathname = usePathname();
   const timeoutIds = useRef<NodeJS.Timeout[]>([]);
@@ -13,12 +19,12 @@ export default function ScrollRestoration() {
     // Handle scroll restoration when returning to main page
     if (pathname === '/') {
       const restoreScrollPosition = () => {
-        const scrollPosition = sessionStorage.getItem('mainPageScrollPosition') || 
-                              localStorage.getItem('mainPageScrollPosition');
-        
+        const scrollPosition = sessionStorage.getItem('mainPageScrollPosition') ||
+          localStorage.getItem('mainPageScrollPosition');
+
         if (scrollPosition && !restorationCompleted.current) {
           const targetPosition = parseInt(scrollPosition);
-          
+
           // Validate position
           if (isNaN(targetPosition) || targetPosition < 0) {
             return;
@@ -26,11 +32,11 @@ export default function ScrollRestoration() {
 
           // Reset user interaction flag
           userHasScrolled.current = false;
-          
+
           // Clear any existing timeouts
           timeoutIds.current.forEach(id => clearTimeout(id));
           timeoutIds.current = [];
-          
+
           // Add scroll listener to detect user interaction
           const handleUserScroll = () => {
             userHasScrolled.current = true;
@@ -46,7 +52,7 @@ export default function ScrollRestoration() {
           window.addEventListener('scroll', handleUserScroll, { passive: true });
           window.addEventListener('wheel', handleUserScroll, { passive: true });
           window.addEventListener('touchmove', handleUserScroll, { passive: true });
-          
+
           // Multiple restoration attempts with different strategies
           const restoreAttempts = [
             { delay: 0, name: 'immediate' },
@@ -55,7 +61,7 @@ export default function ScrollRestoration() {
             { delay: 200, name: 'longer-delay' },
             { delay: 300, name: 'final-attempt' },
           ];
-          
+
           restoreAttempts.forEach(({ delay, name }) => {
             const timeoutId = setTimeout(() => {
               // Only restore if user hasn't scrolled manually
@@ -75,7 +81,7 @@ export default function ScrollRestoration() {
                 }
               }
             }, delay);
-            
+
             timeoutIds.current.push(timeoutId);
           });
 
@@ -95,7 +101,7 @@ export default function ScrollRestoration() {
               }
             }
           });
-          
+
           // Use Intersection Observer to detect when content is loaded
           const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
@@ -114,7 +120,7 @@ export default function ScrollRestoration() {
               }
             });
           });
-          
+
           // Observe the first element in the page
           const firstElement = document.querySelector('main, [data-scroll-target], body > div:first-child');
           if (firstElement) {
@@ -122,7 +128,7 @@ export default function ScrollRestoration() {
             const observerTimeoutId = setTimeout(() => observer.disconnect(), 2000);
             timeoutIds.current.push(observerTimeoutId);
           }
-          
+
           // Clean up after restoration attempts
           const cleanupTimeoutId = setTimeout(() => {
             sessionStorage.removeItem('mainPageScrollPosition');
@@ -140,10 +146,10 @@ export default function ScrollRestoration() {
 
       // Try restoration immediately
       restoreScrollPosition();
-      
+
       // Also try after window load
       const handleLoad = () => restoreScrollPosition();
-      
+
       if (document.readyState === 'loading') {
         window.addEventListener('load', handleLoad);
         return () => window.removeEventListener('load', handleLoad);
@@ -169,8 +175,8 @@ export default function ScrollRestoration() {
     const handlePopState = () => {
       if (pathname === '/' && !restorationCompleted.current) {
         setTimeout(() => {
-          const scrollPosition = sessionStorage.getItem('mainPageScrollPosition') || 
-                                localStorage.getItem('mainPageScrollPosition');
+          const scrollPosition = sessionStorage.getItem('mainPageScrollPosition') ||
+            localStorage.getItem('mainPageScrollPosition');
           if (scrollPosition) {
             const targetPosition = parseInt(scrollPosition);
             if (!isNaN(targetPosition) && targetPosition >= 0) {
@@ -188,9 +194,9 @@ export default function ScrollRestoration() {
 
   // Add a global function for manual scroll restoration
   useEffect(() => {
-    (window as any).manualScrollRestore = () => {
-      const scrollPosition = sessionStorage.getItem('mainPageScrollPosition') || 
-                            localStorage.getItem('mainPageScrollPosition');
+    window.manualScrollRestore = () => {
+      const scrollPosition = sessionStorage.getItem('mainPageScrollPosition') ||
+        localStorage.getItem('mainPageScrollPosition');
       if (scrollPosition) {
         const targetPosition = parseInt(scrollPosition);
         if (!isNaN(targetPosition) && targetPosition >= 0) {
@@ -202,7 +208,7 @@ export default function ScrollRestoration() {
     };
 
     return () => {
-      delete (window as any).manualScrollRestore;
+      delete window.manualScrollRestore;
     };
   }, []);
 

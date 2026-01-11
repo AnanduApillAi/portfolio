@@ -12,7 +12,7 @@ const quotes = [
     text: "The best way to predict the future is to invent it.",
     author: "Alan Kay"
   },
-  
+
   {
     text: "Creativity is intelligence having fun.",
     author: "Albert Einstein"
@@ -98,7 +98,7 @@ const QuoteDisplay = () => {
     if (progress >= 100) {
       setProgress(0);
     }
-  }, [currentQuoteIndex]);
+  }, [currentQuoteIndex, progress]);
 
   const currentQuote = quotes[currentQuoteIndex];
 
@@ -117,8 +117,8 @@ const QuoteDisplay = () => {
             }}
             className="leading-relaxed"
           >
-            "{currentQuote.text}"
-            <span 
+            &quot;{currentQuote.text}&quot;
+            <span
               className="text-zinc-500 dark:text-zinc-500 ml-2 whitespace-nowrap relative cursor-pointer"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
@@ -128,10 +128,10 @@ const QuoteDisplay = () => {
                 <motion.div
                   className="absolute bottom-0 left-0 h-px bg-zinc-400 dark:bg-zinc-500"
                   initial={{ width: "0%" }}
-                  animate={{ 
+                  animate={{
                     width: `${progress}%`
                   }}
-                  transition={{ 
+                  transition={{
                     duration: 0.1,
                     ease: "easeOut"
                   }}

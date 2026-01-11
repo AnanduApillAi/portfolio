@@ -25,7 +25,6 @@ export default function SnakeTeaser() {
     const progressRef = useRef(0);
     const [showTooltip, setShowTooltip] = useState(false);
     const [tooltipText, setTooltipText] = useState("hold...");
-    const holdTimerRef = useRef<NodeJS.Timeout | null>(null);
     const progressStartTimeRef = useRef<number | null>(null);
     const animationFrameRef = useRef<number | null>(null);
 
@@ -148,7 +147,7 @@ export default function SnakeTeaser() {
             onPointerDown={(e) => {
                 // Prevent default to avoid selection/context menu on mobile
                 if (e.pointerType === 'touch') {
-                    // @ts-ignore
+                    // @ts-expect-error: releasePointerCapture is not always available on all pointer types
                     e.target?.releasePointerCapture(e.pointerId);
                 }
                 startHold();
