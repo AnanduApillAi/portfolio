@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="border-t border-zinc-800 pt-12">
         {/* Main Footer Content */}
         <div className="flex flex-col items-center space-y-8">
-          
+
           {/* Social Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -18,40 +18,17 @@ const Footer = () => {
             viewport={{ once: true }}
             className="flex items-center gap-6"
           >
+
+
+
+
             <Link
-              href="javascript:void(0)" // Replace with your GitHub URL
+              href="https://www.linkedin.com/in/ananduapillai/"
               target="_blank"
               rel="noopener noreferrer"
               className="group"
             >
-              <motion.div 
-                className="w-10 h-10 rounded-full bg-zinc-800/50 border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-zinc-200 hover:border-zinc-600 transition-all duration-200"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-github"
-                >
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                  <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                </svg>
-              </motion.div>
-            </Link>
-            
-            <Link
-              href="javascript:void(0)" // Replace with your LinkedIn URL
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group"
-            >
-              <motion.div 
+              <motion.div
                 className="w-10 h-10 rounded-full bg-zinc-800/50 border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-zinc-200 hover:border-zinc-600 transition-all duration-200"
               >
                 <svg
@@ -73,11 +50,11 @@ const Footer = () => {
               </motion.div>
             </Link>
 
-            <Link 
-              href="mailto:your.email@example.com" // Replace with your email
+            <Link
+              href="mailto:anandu.a.dev@gmail.com"
               className="group"
             >
-              <motion.div 
+              <motion.div
                 className="w-10 h-10 rounded-full bg-zinc-800/50 border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-zinc-200 hover:border-zinc-600 transition-all duration-200"
               >
                 <svg
@@ -109,15 +86,15 @@ const Footer = () => {
           >
             <div className="text-sm text-zinc-500">
               <DecryptedText
-                text="© 2025 Anandu. All rights reserved."
+                text="© 2026 Anandu. All rights reserved."
                 duration={2000}
                 animateOn="view"
                 revealDirection="start"
               />
             </div>
-            
+
             <div className="hidden sm:block w-1 h-1 bg-zinc-600 rounded-full"></div>
-            
+
             <Link
               href="#" // Replace with your v1 portfolio URL
               target="_blank"
@@ -129,12 +106,12 @@ const Footer = () => {
               >
                 <span className="text-xs font-mono">v1</span>
                 <span className='opacity-60'>portfolio</span>
-                <svg 
-                  width="12" 
-                  height="12" 
-                  viewBox="0 0 12 12" 
-                  fill="none" 
-                  stroke="currentColor" 
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
                   strokeWidth="1.5"
                   className="transition-transform group-hover:translate-x-1 opacity-60"
                 >
@@ -144,7 +121,7 @@ const Footer = () => {
             </Link>
           </motion.div>
 
-          
+
         </div>
       </div>
     </footer>

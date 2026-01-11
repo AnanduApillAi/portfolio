@@ -2,7 +2,6 @@ import HeroSection from '@/components/HeroSection';
 import SocialLinks from '@/components/SocialLinks';
 import ProjectsSection from '@/components/ProjectsSection';
 import ExperienceSection from '@/components/ExperienceSection';
-
 export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
@@ -11,9 +10,6 @@ export default function Home() {
           <HeroSection />
           <SocialLinks />
           <ExperienceSection />
-          
-          
-          
           <ProjectsSection />
         </main>
       </div>

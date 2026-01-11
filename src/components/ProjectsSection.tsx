@@ -4,14 +4,14 @@ import GlareHover from './ui/GlareHover';
 
 const TechStackSection = () => {
   const techData = [
+    { name: 'React Js', icon: 'react' },
     { name: 'Next.js', icon: 'next' },
     { name: 'TypeScript', icon: 'typescript' },
     { name: 'Tailwind', icon: 'tailwind' },
     { name: 'Supabase', icon: 'supabase' },
-    { name: 'Framer', icon: 'framer' },
-    { name: 'PHP', icon: 'php' },
-    { name: 'Next.js', icon: 'next' },
-    { name: 'TypeScript', icon: 'typescript' },
+    { name: 'CSS', icon: 'css' },
+    { name: 'HTML', icon: 'html' },
+    { name: 'JavaScript', icon: 'javascript' },
   ];
 
   return (
@@ -34,15 +34,15 @@ const TechStackSection = () => {
             >
               <div className="flex items-center gap-3">
 
-              <div className="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-zinc-100/80 dark:bg-zinc-800/80 transition-colors duration-300">
-                <Image
-                  src={`/tech-icons/${tech.icon}.svg`}
-                  alt={`${tech.name} icon`}
-                  width={20}
-                  height={20}
-                  className="w-4 h-4 sm:w-5 sm:h-5 object-contain min-w-4 sm:min-w-5"
-                />
-              </div>
+                <div className="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-zinc-100/80 dark:bg-zinc-800/80 transition-colors duration-300">
+                  <Image
+                    src={`/tech-icons/${tech.icon}.svg`}
+                    alt={`${tech.name} icon`}
+                    width={20}
+                    height={20}
+                    className="w-4 h-4 sm:w-5 sm:h-5 object-contain min-w-4 sm:min-w-5"
+                  />
+                </div>
                 <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-colors duration-300 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 whitespace-nowrap flex-1">
                   {tech.name}
                 </span>
@@ -64,28 +64,6 @@ const TechStackSection = () => {
 const ProjectsSection = () => {
   const projectsData = [
     {
-      code: 'rwc',
-      logo: '/projects/logo/Rewocon.webp',
-      shortDescription: 'Builders connected.',
-      url: 'https://www.rewoconnect.com',
-      hoverImage: '/projects/rewoconnect-cover.png',
-      brandColorClass: 'teal-brand',
-      brandColor: 'bg-teal-900',
-      techStack: ['next', 'typescript', 'tailwind'],
-      dimensions: [42,42],
-    },
-    {
-      code: 'ats',
-      logo: '/projects/logo/artist-logo.png',
-      shortDescription: 'Dynamic artist portfolio.',
-      url: 'https://sibusartisanspace.com.au',
-      hoverImage: '/projects/project-img.png',
-      brandColorClass: 'fuchsia-brand',
-      brandColor: 'bg-fuchsia-700',
-      techStack: ['next', 'supabase', 'typescript'],
-      dimensions: [42,42],
-    },
-    {
       code: 'vb',
       logo: '/projects/logo/veeble-logo.png',
       shortDescription: 'Veeble website.',
@@ -94,9 +72,32 @@ const ProjectsSection = () => {
       brandColorClass: 'blue-brand',
       brandColor: 'bg-blue-400',
       techStack: ['php', 'typescript', 'tailwind'],
-      dimensions: [64,64],
+      dimensions: [64, 64],
     },
-    
+    {
+      code: 'rwc',
+      logo: '/projects/logo/Rewocon.webp',
+      shortDescription: 'Builders connected.',
+      url: 'https://www.rewoconnect.com',
+      hoverImage: '/projects/rewoconnect-cover.png',
+      brandColorClass: 'teal-brand',
+      brandColor: 'bg-teal-900',
+      techStack: ['next', 'typescript', 'tailwind'],
+      dimensions: [42, 42],
+    },
+    // {
+    //   code: 'ats',
+    //   logo: '/projects/logo/artist-logo.png',
+    //   shortDescription: 'Dynamic artist portfolio.',
+    //   url: 'https://sibusartisanspace.com.au',
+    //   hoverImage: '/projects/project-img.png',
+    //   brandColorClass: 'fuchsia-brand',
+    //   brandColor: 'bg-fuchsia-700',
+    //   techStack: ['next', 'supabase', 'typescript'],
+    //   dimensions: [42,42],
+    // },
+
+
   ];
 
   return (

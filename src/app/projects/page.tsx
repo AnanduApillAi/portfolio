@@ -63,13 +63,19 @@ const ProjectsPage = () => {
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-4">
                     <div className={`${project.brandColor} rounded-xl w-14 h-14 flex items-center justify-center`}>
-                      <Image
-                        src={project.logo}
-                        alt={`${project.title} logo`}
-                        width={42}
-                        height={42}
-                        className="h-10 w-10 object-contain"
-                      />
+                      {project.logo.includes('nasa-logo.png') ? (
+                        <span className="text-2xl font-bold text-white">
+                          {project.title.charAt(0)}
+                        </span>
+                      ) : (
+                        <Image
+                          src={project.logo}
+                          alt={`${project.title} logo`}
+                          width={42}
+                          height={42}
+                          className="h-10 w-10 object-contain"
+                        />
+                      )}
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold mb-1">{project.title}</h3>
