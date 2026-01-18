@@ -10,18 +10,31 @@ const pressStart2P = Press_Start_2P({
     display: "swap",
 });
 
-const WIDGET_SIZE = 80;
+const DESKTOP_SIZE = 80;
+const MOBILE_SIZE = 48;
 const HOLD_DURATION = 1350; // 1.35 seconds
 const PREVIEW_GRID = 10;
 const PREVIEW_SPEED = 150;
 
-export default function SnakeTeaser() {
+export default function SnakeTeaser({ variant = "default" }: { variant?: "default" | "footer" }) {
     const router = useRouter();
     const pathname = usePathname();
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     const [isPressing, setIsPressing] = useState(false);
     const [progress, setProgress] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    const widgetSize = variant === "footer" ? MOBILE_SIZE : (isMobile ? MOBILE_SIZE : DESKTOP_SIZE);
     const progressRef = useRef(0);
     const [showTooltip, setShowTooltip] = useState(false);
     const [tooltipText, setTooltipText] = useState("hold...");
@@ -70,22 +83,22 @@ export default function SnakeTeaser() {
         if (!ctx) return;
 
         ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, WIDGET_SIZE, WIDGET_SIZE);
+        ctx.fillRect(0, 0, widgetSize, widgetSize);
 
         // Subtle grid
         ctx.strokeStyle = "#111";
         ctx.lineWidth = 1;
-        const unit = WIDGET_SIZE / PREVIEW_GRID;
+        const unit = widgetSize / PREVIEW_GRID;
         for (let i = 0; i < PREVIEW_GRID; i++) {
-            ctx.beginPath(); ctx.moveTo(i * unit, 0); ctx.lineTo(i * unit, WIDGET_SIZE); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(0, i * unit); ctx.lineTo(WIDGET_SIZE, i * unit); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(i * unit, 0); ctx.lineTo(i * unit, widgetSize); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(0, i * unit); ctx.lineTo(widgetSize, i * unit); ctx.stroke();
         }
 
         ctx.fillStyle = "white";
         snake.forEach(s => {
             ctx.fillRect(s.x * unit + 1, s.y * unit + 1, unit - 2, unit - 2);
         });
-    }, [snake]);
+    }, [snake, widgetSize]);
 
     // Long-press logic
     const startHold = useCallback(() => {
@@ -127,13 +140,51 @@ export default function SnakeTeaser() {
     // Render discrete progress
     const STEPS = 12; // Number of "ticks" for the border progress
     const discreteProgress = Math.floor(progress * STEPS) / STEPS;
-    const perimeter = WIDGET_SIZE * 4;
+    const perimeter = widgetSize * 4;
 
-    if (pathname !== "/") return null;
+    if (!mounted || pathname !== "/") return null;
+
+    if (variant === "footer") {
+        return (
+            <div
+                className="md:hidden absolute top-2 right-0 z-10 pointer-events-auto"
+                onPointerDown={(e) => {
+                    if (e.pointerType === 'touch') {
+                        // @ts-expect-error: releasePointerCapture is not always available
+                        e.target?.releasePointerCapture(e.pointerId);
+                    }
+                    startHold();
+                }}
+                onPointerUp={stopHold}
+                onPointerCancel={stopHold}
+                onContextMenu={(e) => e.preventDefault()}
+            >
+                {/* Tooltip */}
+                {showTooltip && !isPressing && (
+                    <div className={`${pressStart2P.className} absolute bottom-full right-0 mb-2 px-2 py-1 bg-black border border-white text-white text-[8px] whitespace-nowrap z-10`}>
+                        {tooltipText}
+                    </div>
+                )}
+
+                {/* Widget Container */}
+                <div
+                    className={`relative bg-black transition-transform duration-100 ${isPressing ? 'scale-110' : 'scale-100'} border border-zinc-900 shadow-[0_0_0_1px_black]`}
+                    style={{ width: widgetSize, height: widgetSize }}
+                >
+                    <canvas ref={canvasRef} width={widgetSize} height={widgetSize} className="block w-full h-full" style={{ imageRendering: "pixelated" }} />
+                    {isPressing && (
+                        <svg className="absolute inset-0 w-full h-full pointer-events-none stroke-white" viewBox={`0 0 ${widgetSize} ${widgetSize}`}>
+                            <rect x="1" y="1" width={widgetSize - 2} height={widgetSize - 2} fill="none" strokeWidth="2" strokeDasharray={`${discreteProgress * perimeter} ${perimeter}`} strokeLinecap="square" style={{ transition: 'none' }} />
+                        </svg>
+                    )}
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div
-            className="absolute bottom-8 right-6 md:right-12 z-[9999] group pointer-events-auto"
+            className="hidden md:block fixed bottom-8 right-12 z-[9999] group pointer-events-auto"
             onMouseEnter={() => {
                 if (!isPressing) {
                     setTooltipText("hold...");
@@ -145,9 +196,8 @@ export default function SnakeTeaser() {
                 stopHold();
             }}
             onPointerDown={(e) => {
-                // Prevent default to avoid selection/context menu on mobile
                 if (e.pointerType === 'touch') {
-                    // @ts-expect-error: releasePointerCapture is not always available on all pointer types
+                    // @ts-expect-error: releasePointerCapture is not always available
                     e.target?.releasePointerCapture(e.pointerId);
                 }
                 startHold();
@@ -158,7 +208,7 @@ export default function SnakeTeaser() {
         >
             {/* Tooltip */}
             {showTooltip && !isPressing && (
-                <div className={`${pressStart2P.className} absolute bottom-full right-0 mb-3 px-2 py-1 bg-black border border-white text-white text-[8px] whitespace-nowrap z-10`}>
+                <div className={`${pressStart2P.className} absolute bottom-full left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 mb-3 px-2 py-1 bg-black border border-white text-white text-[8px] whitespace-nowrap z-10`}>
                     {tooltipText}
                 </div>
             )}
@@ -166,35 +216,14 @@ export default function SnakeTeaser() {
             {/* Widget Container */}
             <div
                 className={`relative bg-black transition-transform duration-100 ${isPressing ? 'scale-110' : 'scale-100'} border border-zinc-900 shadow-[0_0_0_1px_black]`}
-                style={{ width: WIDGET_SIZE, height: WIDGET_SIZE }}
+                style={{ width: widgetSize, height: widgetSize }}
             >
-                {/* Canvas Preview */}
-                <canvas
-                    ref={canvasRef}
-                    width={WIDGET_SIZE}
-                    height={WIDGET_SIZE}
-                    className="block w-full h-full"
-                    style={{ imageRendering: "pixelated" }}
-                />
-
-                {/* Progress Border (Step-based) */}
+                <canvas ref={canvasRef} width={widgetSize} height={widgetSize} className="block w-full h-full" style={{ imageRendering: "pixelated" }} />
                 {isPressing && (
-                    <svg className="absolute inset-0 w-full h-full pointer-events-none stroke-white" viewBox={`0 0 ${WIDGET_SIZE} ${WIDGET_SIZE}`}>
-                        <rect
-                            x="1"
-                            y="1"
-                            width={WIDGET_SIZE - 2}
-                            height={WIDGET_SIZE - 2}
-                            fill="none"
-                            strokeWidth="2"
-                            strokeDasharray={`${discreteProgress * perimeter} ${perimeter}`}
-                            strokeLinecap="square"
-                            style={{ transition: 'none' }}
-                        />
+                    <svg className="absolute inset-0 w-full h-full pointer-events-none stroke-white" viewBox={`0 0 ${widgetSize} ${widgetSize}`}>
+                        <rect x="1" y="1" width={widgetSize - 2} height={widgetSize - 2} fill="none" strokeWidth="2" strokeDasharray={`${discreteProgress * perimeter} ${perimeter}`} strokeLinecap="square" style={{ transition: 'none' }} />
                     </svg>
                 )}
-
-                {/* Static Corner Accents (Pixel style) */}
                 {!isPressing && (
                     <>
                         <div className="absolute top-0 left-0 w-1 h-1 bg-zinc-700" />
@@ -204,16 +233,15 @@ export default function SnakeTeaser() {
                     </>
                 )}
             </div>
-
             <style jsx>{`
-        div {
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
-            touch-action: none;
-            cursor: crosshair;
-        }
-      `}</style>
+                div {
+                    -webkit-touch-callout: none;
+                    -webkit-user-select: none;
+                    user-select: none;
+                    touch-action: none;
+                    cursor: crosshair;
+                }
+            `}</style>
         </div>
     );
 }

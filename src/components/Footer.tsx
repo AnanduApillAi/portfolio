@@ -2,11 +2,13 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import DecryptedText from './ui/DecryptedText';
+import SnakeTeaser from './SnakeTeaser';
 
 const Footer = () => {
   return (
-    <footer className="pb-24 max-w-[600px] px-4 sm:px-6 mx-auto">
-      <div className="border-t border-zinc-800 pt-12">
+    <footer className="pb-24 max-w-[600px] px-4 sm:px-6 mx-auto mt-16 md:mt-0">
+      <div className="border-t border-zinc-800 pt-12 relative">
+        <SnakeTeaser variant="footer" />
         {/* Main Footer Content */}
         <div className="flex flex-col items-center space-y-8">
 
