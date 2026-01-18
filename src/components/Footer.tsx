@@ -98,7 +98,7 @@ const Footer = () => {
             <div className="hidden sm:block w-1 h-1 bg-zinc-600 rounded-full"></div>
 
             <Link
-              href="#" // Replace with your v1 portfolio URL
+              href="https://v1.anandu.dev/"
               target="_blank"
               rel="noopener noreferrer"
               className="group"
