@@ -1,6 +1,6 @@
 "use client"
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import DecryptedText from './ui/DecryptedText';
 import SnakeTeaser from './SnakeTeaser';
 
