@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState, useCallback, useSyncExternalStore } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Press_Start_2P } from "next/font/google";
 
@@ -16,6 +16,12 @@ const HOLD_DURATION = 1350; // 1.35 seconds
 const PREVIEW_GRID = 10;
 const PREVIEW_SPEED = 150;
 
+const subscribeToResize = (onChange: () => void) => {
+    window.addEventListener('resize', onChange);
+    return () => window.removeEventListener('resize', onChange);
+};
+const subscribeToNothing = () => () => {};
+
 export default function SnakeTeaser({ variant = "default" }: { variant?: "default" | "footer" }) {
     const router = useRouter();
     const pathname = usePathname();
@@ -23,16 +29,9 @@ export default function SnakeTeaser({ variant = "default" }: { variant?: "defaul
 
     const [isPressing, setIsPressing] = useState(false);
     const [progress, setProgress] = useState(0);
-    const [isMobile, setIsMobile] = useState(false);
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
+    // Both are false during SSR and hydration, then reflect the real browser values.
+    const isMobile = useSyncExternalStore(subscribeToResize, () => window.innerWidth < 768, () => false);
+    const mounted = useSyncExternalStore(subscribeToNothing, () => true, () => false);
 
     const widgetSize = variant === "footer" ? MOBILE_SIZE : (isMobile ? MOBILE_SIZE : DESKTOP_SIZE);
     const progressRef = useRef(0);

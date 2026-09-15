@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState, useCallback, useMemo, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
 import { Press_Start_2P } from "next/font/google";
 
@@ -13,10 +13,21 @@ const pressStart2P = Press_Start_2P({
 const UNIT_SIZE = 24;
 const INITIAL_SPEED = 120;
 
+const subscribeToResize = (onChange: () => void) => {
+    window.addEventListener("resize", onChange);
+    return () => window.removeEventListener("resize", onChange);
+};
+
 export default function SnakePage() {
     const router = useRouter();
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [gridDim, setGridDim] = useState({ w: 0, h: 0 });
+    // Viewport size is 0 during SSR and hydration, then tracks the browser window.
+    const viewportWidth = useSyncExternalStore(subscribeToResize, () => window.innerWidth, () => 0);
+    const viewportHeight = useSyncExternalStore(subscribeToResize, () => window.innerHeight, () => 0);
+    const gridDim = useMemo(
+        () => ({ w: Math.floor(viewportWidth / UNIT_SIZE), h: Math.floor(viewportHeight / UNIT_SIZE) }),
+        [viewportWidth, viewportHeight]
+    );
     const [snake, setSnake] = useState([{ x: 0, y: 0 }]);
     const [food, setFood] = useState({ x: -1, y: -1 });
     const [direction, setDirection] = useState({ x: 0, y: -1 });
@@ -54,23 +65,9 @@ export default function SnakePage() {
             }
         };
 
-        const handleResize = () => {
-            const w = Math.floor(window.innerWidth / UNIT_SIZE);
-            const h = Math.floor(window.innerHeight / UNIT_SIZE);
-            setGridDim({ w, h });
-
-            if (canvasRef.current) {
-                canvasRef.current.width = window.innerWidth;
-                canvasRef.current.height = window.innerHeight;
-            }
-        };
-
         enterFullscreen();
-        handleResize();
-        window.addEventListener("resize", handleResize);
 
         return () => {
-            window.removeEventListener("resize", handleResize);
             document.body.style.cssText = originalStyle;
             if (document.fullscreenElement) {
                 document.exitFullscreen().catch(() => { });
@@ -116,13 +113,6 @@ export default function SnakePage() {
         foodRef.current = initialFood;
         setFood(initialFood);
     }, [gridDim, getRandomFood]);
-
-    // Initial spawn
-    useEffect(() => {
-        if (gridDim.w > 0 && food.x === -1) {
-            resetGame();
-        }
-    }, [gridDim, resetGame, food.x]);
 
     // Input Handling (Keyboard + Swipe)
     const touchStartRef = useRef<{ x: number; y: number } | null>(null);
@@ -198,6 +188,12 @@ export default function SnakePage() {
         if (gameOver || gridDim.w <= 0) return;
 
         const tick = () => {
+            // Spawn the first snake and food once the grid size is known.
+            if (foodRef.current.x === -1) {
+                resetGame();
+                return;
+            }
+
             const currentSnake = [...snakeRef.current];
             const currentFood = foodRef.current;
             const head = currentSnake[0];
@@ -234,12 +230,15 @@ export default function SnakePage() {
         const currentSpeed = Math.max(40, INITIAL_SPEED - score * 3);
         const interval = setInterval(tick, currentSpeed);
         return () => clearInterval(interval);
-    }, [gameOver, nextDirection, gridDim, getRandomFood, score]);
+    }, [gameOver, nextDirection, gridDim, getRandomFood, score, resetGame]);
 
     // Rendering
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas || gridDim.w <= 0) return;
+        // Resizing a canvas clears it, so only do it when the viewport changed.
+        if (canvas.width !== viewportWidth) canvas.width = viewportWidth;
+        if (canvas.height !== viewportHeight) canvas.height = viewportHeight;
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
 
@@ -268,7 +267,7 @@ export default function SnakePage() {
         snake.forEach((s) => {
             ctx.fillRect(s.x * UNIT_SIZE + 1, s.y * UNIT_SIZE + 1, UNIT_SIZE - 2, UNIT_SIZE - 2);
         });
-    }, [snake, food, gridDim]);
+    }, [snake, food, gridDim, viewportWidth, viewportHeight]);
 
     return (
         <div className={`${pressStart2P.className} fixed inset-0 z-[99999] bg-black overflow-hidden select-none`}>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 import { motion } from 'motion/react';
 
 const themes = [
@@ -20,23 +20,22 @@ const themes = [
   }
 ];
 
+const subscribeToClock = (onTick: () => void) => {
+  const timer = setInterval(onTick, 1000);
+  return () => clearInterval(timer);
+};
+// Whole seconds keep the snapshot stable between ticks. The server snapshot is
+// null so the prerendered HTML shows a placeholder instead of the build time.
+const getSecondsSnapshot = () => Math.floor(Date.now() / 1000);
+const getServerSnapshot = () => null;
+
 const TimeDisplay = () => {
-  const [currentTime, setCurrentTime] = useState<Date | null>(null);
+  const seconds = useSyncExternalStore(subscribeToClock, getSecondsSnapshot, getServerSnapshot);
+  const currentTime = seconds === null ? null : new Date(seconds * 1000);
   const [currentThemeIndex, setCurrentThemeIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const currentTheme = themes[currentThemeIndex];
-
-  useEffect(() => {
-    // Set initial time on client side only
-    setCurrentTime(new Date());
-
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   const handleThemeChange = async () => {
     if (isAnimating) return;

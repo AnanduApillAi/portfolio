@@ -133,8 +133,6 @@ export default function DecryptedText({
         }
 
         if (isHovering) {
-            setIsScrambling(true)
-
             // Set a timeout to force completion if duration is specified
             let forceCompleteTimeout: NodeJS.Timeout
             if (duration) {
@@ -181,10 +179,6 @@ export default function DecryptedText({
                 if (interval) clearInterval(interval)
                 if (forceCompleteTimeout) clearTimeout(forceCompleteTimeout)
             }
-        } else {
-            setDisplayText(text)
-            setRevealedIndices(new Set())
-            setIsScrambling(false)
         }
     }, [
         isHovering,
@@ -204,6 +198,9 @@ export default function DecryptedText({
         const observerCallback = (entries: IntersectionObserverEntry[]) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting && !hasAnimated) {
+                    setDisplayText(text)
+                    setRevealedIndices(new Set())
+                    setIsScrambling(true)
                     setIsHovering(true)
                     setHasAnimated(true)
                 }
@@ -225,15 +222,27 @@ export default function DecryptedText({
         return () => {
             if (currentRef) observer.unobserve(currentRef)
         }
-    }, [animateOn, hasAnimated])
+    }, [animateOn, hasAnimated, text])
 
+    // Scrambling starts and stops in event handlers; the effect above only runs the timers.
     const hoverProps =
         animateOn === 'hover'
             ? {
-                onMouseEnter: () => setIsHovering(true),
-                onMouseLeave: () => setIsHovering(false),
+                onMouseEnter: () => {
+                    setDisplayText(text)
+                    setRevealedIndices(new Set())
+                    setIsScrambling(true)
+                    setIsHovering(true)
+                },
+                onMouseLeave: () => {
+                    setIsHovering(false)
+                    setIsScrambling(false)
+                },
             }
             : {}
+
+    // Outside of a hover or reveal, show the original text as-is.
+    const shownText = isHovering ? displayText : text
 
     return (
         <motion.span
@@ -242,10 +251,10 @@ export default function DecryptedText({
             {...hoverProps}
             {...props}
         >
-            <span className="sr-only">{displayText}</span>
+            <span className="sr-only">{shownText}</span>
 
             <span aria-hidden="true">
-                {displayText.split('').map((char, index) => {
+                {shownText.split('').map((char, index) => {
                     const isRevealedOrDone =
                         revealedIndices.has(index) || !isScrambling || !isHovering
 

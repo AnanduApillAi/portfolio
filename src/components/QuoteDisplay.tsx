@@ -60,45 +60,25 @@ const QuoteDisplay = () => {
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [progress, setProgress] = useState(0);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const progressRef = useRef(0);
 
+  // Fill the underline over 5 seconds (50 steps), then move to the next quote.
+  // Hovering the author pauses the timer and keeps the current progress.
   useEffect(() => {
-    const startTimer = () => {
-      // Start progress animation
-      progressIntervalRef.current = setInterval(() => {
-        setProgress(prev => {
-          if (prev >= 100) {
-            setCurrentQuoteIndex(prevIndex => (prevIndex + 1) % quotes.length);
-            return 0;
-          }
-          return prev + (100 / 50); // 50 steps over 5 seconds
-        });
-      }, 100);
-    };
+    if (isHovered) return;
 
-    const stopTimer = () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
-    };
+    const interval = setInterval(() => {
+      if (progressRef.current >= 100) {
+        progressRef.current = 0;
+        setCurrentQuoteIndex((index) => (index + 1) % quotes.length);
+      } else {
+        progressRef.current += 100 / 50;
+      }
+      setProgress(progressRef.current);
+    }, 100);
 
-    if (!isHovered) {
-      startTimer();
-    } else {
-      stopTimer();
-    }
-
-    return () => {
-      stopTimer();
-    };
+    return () => clearInterval(interval);
   }, [isHovered]);
-
-  // Handle quote change when progress reaches 100%
-  useEffect(() => {
-    if (progress >= 100) {
-      setProgress(0);
-    }
-  }, [currentQuoteIndex, progress]);
 
   const currentQuote = quotes[currentQuoteIndex];
 
