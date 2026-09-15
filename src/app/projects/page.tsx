@@ -53,11 +53,7 @@ const ProjectsPage = () => {
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-4">
                     <div className={`${project.brandColor} rounded-xl w-14 h-14 flex items-center justify-center`}>
-                      {project.logo.includes('nasa-logo.png') ? (
-                        <span className="text-2xl font-bold text-white">
-                          {project.title.charAt(0)}
-                        </span>
-                      ) : (
+                      {project.logo ? (
                         <Image
                           src={project.logo}
                           alt={`${project.title} logo`}
@@ -65,6 +61,10 @@ const ProjectsPage = () => {
                           height={42}
                           className="h-10 w-10 object-contain"
                         />
+                      ) : (
+                        <span className="text-2xl font-bold text-white">
+                          {project.title.charAt(0)}
+                        </span>
                       )}
                     </div>
                     <div>
@@ -109,13 +109,17 @@ const ProjectsPage = () => {
 
                 {/* Project Links */}
                 <div className="flex items-center gap-3">
-                  <Link
-                    href={project.liveLink}
-                    className="group inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all duration-200 border border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600"
-                  >
-                    <GlobeIcon className="w-4 h-4" />
-                    Live Site
-                  </Link>
+                  {project.liveLink && (
+                    <a
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all duration-200 border border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600"
+                    >
+                      <GlobeIcon className="w-4 h-4" />
+                      Live Site
+                    </a>
+                  )}
                   {project.github && (
                     <a
                       href={project.github}

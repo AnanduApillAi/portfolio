@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import GlareHover from './ui/GlareHover';
+import allProjects from '@/data/projects.json';
 
 const TechStackSection = () => {
   const techData = [
@@ -62,43 +63,14 @@ const TechStackSection = () => {
 };
 
 const ProjectsSection = () => {
-  const projectsData = [
-    {
-      code: 'vb',
-      logo: '/projects/logo/veeble-logo.png',
-      shortDescription: 'Veeble website.',
-      url: 'https://www.veeble.com',
-      hoverImage: '/projects/project-img.png',
-      brandColorClass: 'blue-brand',
-      brandColor: 'bg-blue-400',
-      techStack: ['php', 'typescript', 'tailwind'],
-      dimensions: [64, 64],
-    },
-    {
-      code: 'rwc',
-      logo: '/projects/logo/Rewocon.webp',
-      shortDescription: 'Builders connected.',
-      url: 'https://www.rewoconnect.com',
-      hoverImage: '/projects/rewoconnect-cover.png',
-      brandColorClass: 'teal-brand',
-      brandColor: 'bg-teal-900',
-      techStack: ['next', 'typescript', 'tailwind'],
-      dimensions: [42, 42],
-    },
-    // {
-    //   code: 'ats',
-    //   logo: '/projects/logo/artist-logo.png',
-    //   shortDescription: 'Dynamic artist portfolio.',
-    //   url: 'https://sibusartisanspace.com.au',
-    //   hoverImage: '/projects/project-img.png',
-    //   brandColorClass: 'fuchsia-brand',
-    //   brandColor: 'bg-fuchsia-700',
-    //   techStack: ['next', 'supabase', 'typescript'],
-    //   dimensions: [42,42],
-    // },
-
-
-  ];
+  // Featured projects come from the shared data file; `featured.order` sets their position here.
+  const projectsData = allProjects
+    .flatMap((project) =>
+      project.featured && project.logo && project.liveLink
+        ? [{ ...project, logo: project.logo, liveLink: project.liveLink, featured: project.featured }]
+        : []
+    )
+    .sort((a, b) => a.featured.order - b.featured.order);
 
   return (
     <>
@@ -132,30 +104,30 @@ const ProjectsSection = () => {
           {projectsData.map((project, index) => (
             <div
               key={index}
-              className={`group relative p-8 bg-zinc-800 dark:bg-zinc-800/30 border border-zinc-800/30 rounded-[24px] transition-all duration-300 ease-in-out overflow-hidden project-card project-${project.code} ${project.brandColorClass}`}
+              className={`group relative p-8 bg-zinc-800 dark:bg-zinc-800/30 border border-zinc-800/30 rounded-[24px] transition-all duration-300 ease-in-out overflow-hidden project-card project-${project.featured.code} ${project.featured.brandColorClass}`}
             >
               <div className="flex items-center gap-8">
                 <div className="project-logo flex-shrink-0">
                   <div className={`${project.brandColor} transition-colors duration-300 rounded-2xl w-16 h-16 flex justify-center items-center`}>
                     <Image
                       src={project.logo}
-                      alt={`${project.shortDescription} logo`}
-                      width={project.dimensions[0]}
-                      height={project.dimensions[1]}
+                      alt={`${project.title} logo`}
+                      width={project.featured.logoSize}
+                      height={project.featured.logoSize}
                       loading="lazy"
                       className="object-contain"
                     />
                   </div>
                 </div>
                 <div className="project-details">
-                  <p className="text-zinc-100 dark:text-zinc-50">{project.shortDescription}</p>
+                  <p className="text-zinc-100 dark:text-zinc-50">{project.featured.tagline}</p>
                   <a
-                    href={project.url}
+                    href={project.liveLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="project-link inline-flex items-center gap-2 text-sm text-zinc-300 dark:text-zinc-200 hover:text-zinc-100 dark:hover:text-white transition-colors duration-200"
                   >
-                    <span>{project.url.replace(/^https?:\/\//, '')}</span>
+                    <span>{project.liveLink.replace(/^https?:\/\//, '')}</span>
                     <svg
                       className="link-arrow w-4 h-4"
                       fill="none"
