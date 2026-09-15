@@ -2,6 +2,12 @@ import HeroSection from '@/components/HeroSection';
 import SocialLinks from '@/components/SocialLinks';
 import ProjectsSection from '@/components/ProjectsSection';
 import ExperienceSection from '@/components/ExperienceSection';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+};
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100">

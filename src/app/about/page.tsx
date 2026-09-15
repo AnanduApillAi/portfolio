@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import Image from 'next/image'
+import { experiences } from '@/data/experience'
 
 function AboutPage() {
     const activities = ['watch movies', 'read books', 'play games'];
@@ -30,7 +31,7 @@ function AboutPage() {
                     <div className="ml-4 flex-1">
                         <h1 className="mb-0.5 text-xl">Anandu A Pillai</h1>
                         <p className="text-muted-foreground text-sm">
-                            Front End Developer
+                            Frontend-First Full Stack Developer
                         </p>
                         <span className="text-muted-foreground bg-secondary rounded-full px-2 py-1 text-xs">
                             <a
@@ -64,66 +65,20 @@ function AboutPage() {
                 <section className="my-14 text-sm">
                     <h3 className="mb-6">Work Experience</h3>
                     <div className="flex flex-col gap-6">
-                        <div className="flex">
-                            <div className="text-muted-foreground mr-8 w-full max-w-[100px]">
-                                2025 - Present
+                        {experiences.map((exp) => (
+                            <div key={`${exp.company}-${exp.role}`} className="flex">
+                                <div className="text-muted-foreground mr-8 w-full max-w-[100px]">
+                                    {exp.period}
+                                </div>
+                                <div className="flex flex-1 flex-col">
+                                    <h4>{exp.role.includes(exp.company) ? exp.role : `${exp.role} at ${exp.company}`}</h4>
+                                    <p className="text-muted-foreground">{exp.type}</p>
+                                    <p className="text-muted-foreground mt-2">
+                                        {exp.description}
+                                    </p>
+                                </div>
                             </div>
-                            <div className="flex flex-1 flex-col">
-                                <h4>React Js Developer at Linnk Group India</h4>
-                                <p className="text-muted-foreground">Onsite</p>
-                                <p className="text-muted-foreground mt-2">
-                                    Building SaaS Platforms.
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex">
-                            <div className="text-muted-foreground mr-8 w-full max-w-[100px]">
-                                2023 - 2025
-                            </div>
-                            <div className="flex flex-1 flex-col">
-                                <h4>Lead Front End Developer at Extravelmoney</h4>
-                                <p className="text-muted-foreground">Onsite</p>
-                                <p className="text-muted-foreground mt-2">
-                                    Building Extravelmoney website and internal tools.
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex">
-                            <div className="text-muted-foreground mr-8 w-full max-w-[100px]">
-                                2023 - 2025
-                            </div>
-                            <div className="flex flex-1 flex-col">
-                                <h4>Front-End Developer at Veeble</h4>
-                                <p className="text-muted-foreground">Consulting</p>
-                                <p className="text-muted-foreground mt-2">
-                                    Reworking the Veeble website.
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex">
-                            <div className="text-muted-foreground mr-8 w-full max-w-[100px]">
-                                2022 - 2023
-                            </div>
-                            <div className="flex flex-1 flex-col">
-                                <h4>Front End Developer at Tapclone</h4>
-                                <p className="text-muted-foreground">Onsite</p>
-                                <p className="text-muted-foreground mt-2">
-                                    Building websites and dashboards for clients.
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex">
-                            <div className="text-muted-foreground mr-8 w-full max-w-[100px]">
-                                2019 - Present
-                            </div>
-                            <div className="flex flex-1 flex-col">
-                                <h4>Freelance Web Developer</h4>
-                                <p className="text-muted-foreground">Remote</p>
-                                <p className="text-muted-foreground mt-2">
-                                    Building websites and dashboards for clients around the world.
-                                </p>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </section>
                 <section className="my-14 text-sm">

@@ -9,7 +9,7 @@ const HeroSection = () => {
       </h1>
 
       <h2 className="text-xl sm:text-2xl font-semibold mb-6 text-zinc-800 dark:text-zinc-200" >
-        <span className="">Front-End focused Full Stack dev from India</span>
+        <span className="">Frontend-First Full Stack Developer from India</span>
       </h2>
 
       <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-6 max-w-2xl">

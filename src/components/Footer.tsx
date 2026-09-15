@@ -88,7 +88,7 @@ const Footer = () => {
           >
             <div className="text-sm text-zinc-500">
               <DecryptedText
-                text="© 2026 Anandu. All rights reserved."
+                text={`© ${new Date().getFullYear()} Anandu. All rights reserved.`}
                 duration={2000}
                 animateOn="view"
                 revealDirection="start"

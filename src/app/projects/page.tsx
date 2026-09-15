@@ -2,6 +2,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import projectsData from '@/data/projects.json';
 import { GlobeIcon } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Projects',
+  description: 'Client websites, marketplaces, and developer tools built by Anandu A Pillai.',
+  alternates: { canonical: '/projects' },
+};
 
 const ProjectsPage = () => {
 

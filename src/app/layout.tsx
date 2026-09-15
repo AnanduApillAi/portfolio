@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Roboto_Flex } from "next/font/google";
 import "./globals.css";
+import { siteDescription, siteName, siteTitle, siteUrl } from "@/lib/site";
 
 import ScrollRestoration from "@/components/ScrollRestoration";
 import Header from "@/components/Header";
@@ -23,9 +24,25 @@ const robotoFlex = Roboto_Flex({
 });
 
 export const metadata: Metadata = {
-  title: "Anandu A Pillai — Frontend-First Full Stack Developer",
-  description:
-    "Frontend-first full stack developer building clean, responsive, and user-friendly web experiences with React, Next.js, TypeScript, and modern UI tools.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteTitle,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  openGraph: {
+    type: "website",
+    siteName,
+    title: siteTitle,
+    description: siteDescription,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@ananduapillai",
+    title: siteTitle,
+    description: siteDescription,
+  },
   icons: {
     icon: "/image/favicon.ico",
     apple: "/image/favicon.ico",
