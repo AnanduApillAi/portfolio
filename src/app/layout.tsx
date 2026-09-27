@@ -3,11 +3,6 @@ import { Geist, Geist_Mono, Roboto_Flex } from "next/font/google";
 import "./globals.css";
 import { siteDescription, siteName, siteTitle, siteUrl } from "@/lib/site";
 
-import ScrollRestoration from "@/components/ScrollRestoration";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import SnakeTeaser from "@/components/SnakeTeaser";
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -60,11 +55,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${robotoFlex.variable} antialiased bg-zinc-950 text-zinc-100 relative min-h-screen`}
       >
-        <Header />
         {children}
-        <Footer />
-        <SnakeTeaser />
-        <ScrollRestoration />
       </body>
     </html>
   );
