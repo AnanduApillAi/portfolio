@@ -7,19 +7,19 @@ export type Experience = {
   description: string;
 };
 
-// Shared by the home page Work Experience section and the About page.
+// Shown in the Work section of the home page. Keep in sync with the resume PDF.
 export const experiences: Experience[] = [
   {
     period: "2025 - Present",
-    role: "React Js Developer",
+    role: "Frontend Developer",
     company: "Linnk Group India",
     companyUrl: "https://www.linnk.com/linnk-group-india/",
     type: "Onsite",
-    description: "Building SaaS Platforms."
+    description: "Building an AI-powered SaaS platform."
   },
   {
     period: "2023 - 2025",
-    role: "Lead Front End Developer",
+    role: "Frontend Developer",
     company: "Extravelmoney",
     companyUrl: "https://www.extravelmoney.com/",
     type: "Onsite",
@@ -27,7 +27,7 @@ export const experiences: Experience[] = [
   },
   {
     period: "2023 - 2025",
-    role: "Front-End Developer",
+    role: "Frontend Developer (Consultant)",
     company: "Veeble",
     companyUrl: "https://www.veeble.com/",
     type: "Consulting",
@@ -35,16 +35,9 @@ export const experiences: Experience[] = [
   },
   {
     period: "2022 - 2023",
-    role: "Front End Developer",
+    role: "React.js Developer",
     company: "Tapclone",
     type: "Onsite",
     description: "Building websites and dashboards for clients."
-  },
-  {
-    period: "2019 - Present",
-    role: "Freelance Web Developer",
-    company: "Freelance",
-    type: "Remote",
-    description: "Building websites and dashboards for clients around the world."
   }
 ];

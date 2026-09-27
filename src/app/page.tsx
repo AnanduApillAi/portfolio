@@ -91,12 +91,8 @@ export default async function Home() {
           <Row key={`${exp.company}-${exp.role}`} label={exp.period}>
             <h3>
               {exp.role}
-              {exp.company !== 'Freelance' && (
-                <>
-                  {' · '}
-                  {exp.companyUrl ? <ExternalLink href={exp.companyUrl}>{exp.company}</ExternalLink> : exp.company}
-                </>
-              )}
+              {' · '}
+              {exp.companyUrl ? <ExternalLink href={exp.companyUrl}>{exp.company}</ExternalLink> : exp.company}
             </h3>
             <p className="mt-1 text-muted-foreground">{exp.description}</p>
           </Row>
